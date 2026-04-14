@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>E-commerce</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+<div class="container">
+
+    <div class="topo">
+        <h1>Meus produtos</h1>
+        <a href="/novo" class="btn-novo">Novo produto</a>
+    </div>
+
+    <div class="grid">
+        <div class="card" th:each="p : ${produtos}">
+
+            <div class="img-box">
+                <!-- 🔥 CORREÇÃO AQUI -->
+                <img th:src="@{${p.imagem}}">
+            </div>
+
+            <h3 th:text="${p.nome}"></h3>
+            <p th:text="${p.descricao}"></p>
+
+            <strong>
+                R$ <span th:text="${p.preco}"></span>
+            </strong>
+
+            <div class="acoes">
+                <a th:href="@{'/editar/' + ${p.id}}" class="btn-editar">Editar</a>
+                <a th:href="@{'/deletar/' + ${p.id}}" class="btn-delete">Excluir</a>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>
